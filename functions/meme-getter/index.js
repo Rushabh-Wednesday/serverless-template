@@ -1,22 +1,21 @@
 import { apiSuccess, apiFailure } from '@utils';
-import { getOrganizations } from '@services/github';
+import { getMemes } from '@services/meme-maker';
 import { handleValidations } from '@utils/validationUtil';
 import Joi from 'joi';
 
 exports.handler = async (event, _context, callback) => {
 	try {
-		event.body = JSON.parse(event.body);
-		const { organization } = event.body;
+		const { page } = event.pathParameters;
 		const options = {
 			schema: Joi.object({
-				organization: Joi.string().required(),
+				page: Joi.number().required(),
 			}),
 			parameters: {
-				...event.body,
+				...event.pathParameters,
 			},
 		};
 		handleValidations(options);
-		const response = await getOrganizations(organization);
+		const response = await getMemes(page);
 		return apiSuccess(callback, response);
 	} catch (error) {
 		return apiFailure(callback, error);

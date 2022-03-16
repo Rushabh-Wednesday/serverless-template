@@ -10,9 +10,8 @@ const generateGithubClient = () => {
 	return githubClient;
 };
 
-export const getOrganizations = async (
-	organization = 'wednesday-solutions'
-) => {
+export const getOrganizations = async (organization) => {
+	console.log('organization', organization);
 	const githubClient = generateGithubClient();
 	const repoData = await githubClient.get(`/orgs/${organization}`);
 	return repoData.data;

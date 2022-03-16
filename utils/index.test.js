@@ -7,6 +7,7 @@ describe('calls the apiSuccess function correctly', () => {
 	});
 	it('should call the success correctly', () => {
 		apiSuccess(callBackSpy, 'mocked');
+		console.log(callBackSpy);
 		expect(callBackSpy).toHaveBeenCalledWith(null, {
 			body: JSON.stringify({ data: 'mocked' }),
 		});

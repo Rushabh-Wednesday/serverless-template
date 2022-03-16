@@ -3,7 +3,16 @@ starterFunction:
   role: ServerlessTemplateRole
   events:
     - http:
-        method: GET
+        method: POST
         path: /get-repos
         cors: true
+
+memeGetter:
+  handler: functions/meme-getter/index.handler
+  role: ServerlessTemplateRole
+  events:
+    - http:
+       method: GET
+       path: /get-memes/{page}
+       cors: true
   
