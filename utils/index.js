@@ -9,7 +9,5 @@ export const apiFailure = (callback, error, statusCode = 500) => {
 	});
 };
 
-export const apiSuccess = (callback, data) => {
-	console.log('success', JSON.stringify(data));
-	return callback(null, { body: JSON.stringify({ data }) });
-};
+export const apiSuccess = (callback, data) =>
+	callback(null, { body: JSON.stringify({ data }) });

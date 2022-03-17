@@ -1,30 +1,26 @@
 {
-	"body": { "organization": "wednesday-solutions" },
+	"body": null,
 	"headers": {
-		"Content-Type": "application/json",
 		"User-Agent": "PostmanRuntime/7.29.0",
 		"Accept": "*/*",
-		"Postman-Token": "e326dbc0-74c9-42bc-ac46-d9abece5fc52",
+		"Postman-Token": "4a0145c3-58f5-4031-bfff-626b79d3973d",
 		"Host": "localhost:3000",
 		"Accept-Encoding": "gzip, deflate, br",
-		"Connection": "keep-alive",
-		"Content-Length": "44"
+		"Connection": "keep-alive"
 	},
-	"httpMethod": "POST",
+	"httpMethod": "GET",
 	"isBase64Encoded": false,
 	"multiValueHeaders": {
-		"Content-Type": ["application/json"],
 		"User-Agent": ["PostmanRuntime/7.29.0"],
 		"Accept": ["*/*"],
-		"Postman-Token": ["e326dbc0-74c9-42bc-ac46-d9abece5fc52"],
+		"Postman-Token": ["4a0145c3-58f5-4031-bfff-626b79d3973d"],
 		"Host": ["localhost:3000"],
 		"Accept-Encoding": ["gzip, deflate, br"],
-		"Connection": ["keep-alive"],
-		"Content-Length": ["44"]
+		"Connection": ["keep-alive"]
 	},
 	"multiValueQueryStringParameters": null,
-	"path": "/get-repos",
-	"pathParameters": null,
+	"path": "/get-memes/1",
+	"pathParameters": { "page": "1" },
 	"queryStringParameters": null,
 	"requestContext": {
 		"accountId": "offlineContext_accountId",
@@ -36,8 +32,8 @@
 		},
 		"domainName": "offlineContext_domainName",
 		"domainPrefix": "offlineContext_domainPrefix",
-		"extendedRequestId": "cl0up1fpu0003nyy6f5yu0do1",
-		"httpMethod": "POST",
+		"extendedRequestId": "cl0uswh4r0000p7y6e98iae58",
+		"httpMethod": "GET",
 		"identity": {
 			"accessKey": null,
 			"accountId": "offlineContext_accountId",
@@ -54,16 +50,15 @@
 			"userAgent": "PostmanRuntime/7.29.0",
 			"userArn": "offlineContext_userArn"
 		},
-		"path": "/get-repos",
+		"path": "/get-memes/1",
 		"protocol": "HTTP/1.1",
-		"requestId": "cl0up1fpu0004nyy6dva8b81l",
-		"requestTime": "17/Mar/2022:13:21:28 +0530",
-		"requestTimeEpoch": 1647503488719,
+		"requestId": "cl0uswh4r0001p7y65c6ialy3",
+		"requestTime": "17/Mar/2022:15:09:35 +0530",
+		"requestTimeEpoch": 1647509975732,
 		"resourceId": "offlineContext_resourceId",
-		"resourcePath": "/local/get-repos",
+		"resourcePath": "/local/get-memes/{page}",
 		"stage": "local"
 	},
-	"resource": "/get-repos",
-	"stageVariables": "undefined",
-	"rawBody": "{\n    \"organization\":\"wednesday-solutions\"\n}"
+	"resource": "/get-memes/{page}",
+	"stageVariables": "undefined"
 }
