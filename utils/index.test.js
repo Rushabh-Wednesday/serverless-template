@@ -1,15 +1,9 @@
 import { apiSuccess } from '.';
 
 describe('calls the apiSuccess function correctly', () => {
-	let callBackSpy;
-	beforeEach(() => {
-		callBackSpy = jest.fn();
-	});
 	it('should call the success correctly', () => {
-		apiSuccess(callBackSpy, 'mocked');
-		console.log(callBackSpy);
-		expect(callBackSpy).toHaveBeenCalledWith(null, {
-			body: JSON.stringify({ data: 'mocked' }),
-		});
+		const result = apiSuccess('mocked');
+		expect(result.statusCode).toEqual(200);
+		expect(result.body).toEqual('mocked');
 	});
 });

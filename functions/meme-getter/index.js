@@ -1,23 +1,48 @@
+import middy from '@middy/core';
+import jsonBodyParser from '@middy/http-json-body-parser';
+import validator from '@middy/validator';
+import httpResponseSerializer from '@middy/http-response-serializer';
 import { apiSuccess, apiFailure } from '@utils';
 import { getMemes } from '@services/meme-maker';
-import { handleValidations } from '@utils/validationUtil';
-import Joi from 'joi';
+import { RESPONSE_SERIALIZER } from '@utils/constants';
+import httpErrorHandler from '@middy/http-error-handler';
 
-exports.handler = async (event, _context, callback) => {
+const baseHandler = async (event, _context) => {
 	try {
-		const { page } = event.pathParameters;
-		const options = {
-			schema: Joi.object({
-				page: Joi.number().required(),
-			}),
-			parameters: {
-				...event.pathParameters,
-			},
-		};
-		handleValidations(options);
-		const response = await getMemes(page);
-		return apiSuccess(callback, response);
+		const { category } = event.pathParameters;
+		const response = await getMemes(category);
+		return apiSuccess(response);
 	} catch (error) {
-		return apiFailure(callback, error);
+		return apiFailure(error);
 	}
 };
+
+const inputSchema = {
+	type: 'object',
+	properties: {
+		pathParameters: {
+			type: 'object',
+			properties: {
+				category: { type: 'string', enum: ['Programming', 'Chrismats'] },
+			},
+			required: ['category'],
+		},
+	},
+};
+
+const handler = middy(baseHandler)
+	.use(jsonBodyParser())
+	.use(validator({ inputSchema }))
+	.use(
+		httpResponseSerializer({
+			serializers: RESPONSE_SERIALIZER,
+			default: 'application/json',
+		})
+	)
+	.use(
+		httpErrorHandler({
+			logger: (error) => apiFailure({ message: error.details[0].message }),
+		})
+	);
+
+export { handler };

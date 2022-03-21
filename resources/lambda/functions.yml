@@ -6,13 +6,14 @@ starterFunction:
         method: POST
         path: /get-repos
         cors: true
+        private: true
 
 memeGetter:
   handler: functions/meme-getter/index.handler
   role: ServerlessTemplateRole
   events:
     - http:
-       method: GET
-       path: /get-memes/{page}
-       cors: true
-  
+        method: GET
+        path: /get-jokes/{category}
+        cors: true
+        private: true

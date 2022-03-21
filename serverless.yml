@@ -12,10 +12,32 @@ provider:
   stage: ${env:STAGE}
   region: ${env:REGION}
   versionFunctions: false
+  apiKeys:
+    - free:
+        - myFreeApiKey
+    - paid:
+        - highliy-confidential
+  usagePlan:
+    - free:
+        quota:
+          limit: 2
+          peiod: DAY
+        throttle:
+          rateLimit: 1
+          burstLimit: 5
+    - paid:
+        quota:
+          limit: 10
+          period: DAY
+        throttle:
+          rateLimit: 5
+          burstLimit: 10
 package:
   individually: true
 custom:
   urlPrefix: 'sls'
+  serverless-offline:
+    apiKey: 'confidential'
   webpack:
     includeModules: true
     excludeFiles: ./**/*.test.js

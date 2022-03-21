@@ -939,7 +939,7 @@
   dependencies:
     "@cspotcode/source-map-consumer" "0.8.0"
 
-"@hapi/accept@^5.0.1":
+"@hapi/accept@5.0.2", "@hapi/accept@^5.0.1":
   version "5.0.2"
   resolved "https://registry.yarnpkg.com/@hapi/accept/-/accept-5.0.2.tgz#ab7043b037e68b722f93f376afb05e85c0699523"
   integrity sha512-CmzBx/bXUR8451fnZRuZAJRlzgm0Jgu5dltTX/bszmR2lheb9BpyN47Q1RbaGTsvFzn0PXAEs+lXDKfshccYZw==
@@ -1413,6 +1413,14 @@
   resolved "https://registry.yarnpkg.com/@middy/http-json-body-parser/-/http-json-body-parser-2.5.7.tgz#966dccc77ec5a0a163efe731b7c7007adf821513"
   integrity sha512-6xysTWlK8s8QTVyQE9MfXR6fIY9h26uyiD1rM0mmYzGhLqWmamHgJvXzpBVXyRwOej451zSfjdSgKU66nxZmrw==
   dependencies:
+    "@middy/util" "^2.5.7"
+
+"@middy/http-response-serializer@^2.5.7":
+  version "2.5.7"
+  resolved "https://registry.yarnpkg.com/@middy/http-response-serializer/-/http-response-serializer-2.5.7.tgz#8ff0b22794be355d2d6125bc761236e9c5d3b268"
+  integrity sha512-5Rmz1z2gn9PcABu47K9YvpVFVDU1ZFAvmml7nYXhqbY7goI2cuNfagkbOOx+dWqUgA4nhNQiaeHsuzR4PG1hWg==
+  dependencies:
+    "@hapi/accept" "5.0.2"
     "@middy/util" "^2.5.7"
 
 "@middy/util@^2.5.7":

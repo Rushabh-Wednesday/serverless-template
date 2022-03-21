@@ -20,7 +20,7 @@
 	},
 	"multiValueQueryStringParameters": null,
 	"path": "/get-memes/1",
-	"pathParameters": { "page": "1" },
+	"pathParameters": { "category": "Programming" },
 	"queryStringParameters": null,
 	"requestContext": {
 		"accountId": "offlineContext_accountId",

@@ -1,13 +1,15 @@
-export const apiFailure = (callback, error, statusCode = 500) => {
+export const apiFailure = (error, statusCode = 500) => {
 	const errMessage = error.message || 'Something went wrong!';
-	return callback(null, {
+	return {
 		statusCode,
-		body: JSON.stringify({
+		body: {
 			errorCode: error.code || statusCode,
 			errMessage,
-		}),
-	});
+		},
+	};
 };
 
-export const apiSuccess = (callback, data) =>
-	callback(null, { body: JSON.stringify({ data }) });
+export const apiSuccess = (data) => ({
+	statusCode: 200,
+	body: data,
+});
