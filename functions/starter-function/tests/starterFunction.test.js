@@ -1,5 +1,5 @@
 import { baseHandler } from '../';
-import * as GitService from '../../../services/github';
+import * as gitService from '../../../services/github';
 import * as utils from '@utils';
 import data from '../data.json';
 import { mockData } from '@utils/mockData';
@@ -18,11 +18,11 @@ describe('Starter Function test', () => {
 	});
 	it('should called handler correctly', async () => {
 		repoSpy = jest
-			.spyOn(GitService, 'getOrganizations')
+			.spyOn(gitService, 'getOrganizations')
 			.mockResolvedValue(mockSuccessResponse);
 		const apiSucessSpy = jest
 			.spyOn(utils, 'apiSuccess')
-			.mockReturnValue(mockSuccessResponse);
+			.mockReturnValueOnce(mockSuccessResponse);
 		result = await baseHandler(event, {});
 		expect(repoSpy).toBeCalledWith(event.body.organization);
 		expect(result).toEqual(mockSuccessResponse);
@@ -33,8 +33,8 @@ describe('Starter Function test', () => {
 		event.body = JSON.parse(event.body);
 		event.body.organization = 'wednesday-solutionss';
 		repoSpy = jest
-			.spyOn(GitService, 'getOrganizations')
-			.mockRejectedValue(mockFailureResponse);
+			.spyOn(gitService, 'getOrganizations')
+			.mockRejectedValueOnce(mockFailureResponse);
 		jest.spyOn(utils, 'apiFailure').mockReturnValue(mockFailureResponse);
 		result = await baseHandler(event, {});
 		expect(repoSpy).toBeCalledWith(event.body.organization);

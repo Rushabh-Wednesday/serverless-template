@@ -1,4 +1,4 @@
-import * as MemeService from '../../../services/meme-maker';
+import * as memeService from '@services/meme-maker';
 import { handler } from '../';
 import data from '../data.json';
 import * as utils from '@utils';
@@ -17,20 +17,20 @@ describe('testing memeGetter handler', () => {
 	});
 	it('should callled the handler', async () => {
 		const memeSpy = jest
-			.spyOn(MemeService, 'getMemes')
-			.mockResolvedValue(mockSuccessResponse);
+			.spyOn(memeService, 'getMemes')
+			.mockResolvedValueOnce(mockSuccessResponse);
 		const apiSucessSpy = jest
 			.spyOn(utils, 'apiSuccess')
-			.mockReturnValue(mockSuccessResponse);
+			.mockReturnValueOnce(mockSuccessResponse);
 		result = await handler(event, {});
 		expect(memeSpy).toBeCalledWith(event.pathParameters.category);
 		expect(result).toEqual(mockSuccessResponse);
 		expect(apiSucessSpy).toBeCalledWith(mockSuccessResponse);
 	});
 
-	it('should throw error when page is passed with anyother datatype except number', async () => {
+	it('should throw error when category is passed with any other value than Program,Christmas', async () => {
 		event.pathParameters = { category: 'Program' };
-		jest.spyOn(utils, 'apiFailure').mockReturnValue(mockFailureResponse);
+		jest.spyOn(utils, 'apiFailure').mockReturnValueOnce(mockFailureResponse);
 		result = await handler(event, {});
 		expect(result.statusCode).toEqual(400);
 		expect(result.body).toEqual('Event object failed validation');

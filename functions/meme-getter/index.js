@@ -23,7 +23,7 @@ const inputSchema = {
 		pathParameters: {
 			type: 'object',
 			properties: {
-				category: { type: 'string', enum: ['Programming', 'Chrismats'] },
+				category: { type: 'string', enum: ['Programming', 'Christmas'] },
 			},
 			required: ['category'],
 		},
