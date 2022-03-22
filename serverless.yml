@@ -21,7 +21,7 @@ provider:
     - free:
         quota:
           limit: 2
-          peiod: DAY
+          period: DAY
         throttle:
           rateLimit: 1
           burstLimit: 5
