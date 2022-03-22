@@ -1,6 +1,5 @@
 service:
   name: ${env:NAME}
-variablesResolutionMode: 20210326
 plugins:
   - serverless-dotenv-plugin
   - serverless-webpack
