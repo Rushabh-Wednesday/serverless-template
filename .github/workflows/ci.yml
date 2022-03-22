@@ -4,6 +4,7 @@ on:
     branches:
       - dev
       - main
+      - feat/new-api
 
 jobs:
   build:
