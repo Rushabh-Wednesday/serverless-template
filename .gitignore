@@ -10,7 +10,6 @@ jspm_packages
 .webpack
 .idea
 
-.env
 !.env*.local
 .env*.test*
 .history
