@@ -3,13 +3,14 @@ import jsonBodyParser from '@middy/http-json-body-parser';
 import validator from '@middy/validator';
 import httpResponseSerializer from '@middy/http-response-serializer';
 import { apiSuccess, apiFailure } from '@utils';
-import { getOrganizations } from '@services/github';
+import { getMemes } from '@services/meme-maker';
 import { RESPONSE_SERIALIZER } from '@utils/constants';
+import httpErrorHandler from '@middy/http-error-handler';
 
-export const baseHandler = async (event, _context) => {
+const baseHandler = async (event, _context) => {
 	try {
-		const { organization } = event.body;
-		const response = await getOrganizations(organization);
+		const { category } = event.pathParameters;
+		const response = await getMemes(category);
 		return apiSuccess(response);
 	} catch (error) {
 		return apiFailure(error);
@@ -19,12 +20,12 @@ export const baseHandler = async (event, _context) => {
 const inputSchema = {
 	type: 'object',
 	properties: {
-		body: {
+		pathParameters: {
 			type: 'object',
 			properties: {
-				organization: { type: 'string' },
+				category: { type: 'string', enum: ['Programming', 'Christmas'] },
 			},
-			required: ['organization'],
+			required: ['category'],
 		},
 	},
 };
@@ -36,6 +37,11 @@ const handler = middy(baseHandler)
 		httpResponseSerializer({
 			serializers: RESPONSE_SERIALIZER,
 			default: 'application/json',
+		})
+	)
+	.use(
+		httpErrorHandler({
+			logger: (error) => apiFailure({ message: error.details[0].message }),
 		})
 	);
 
